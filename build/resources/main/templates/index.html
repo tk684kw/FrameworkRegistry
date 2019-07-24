@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Framework Registry</title>
+</head>
+<body>
+<div align="center">
+    <h1>Framework Registry</h1>
+    <form action="/" class="form-inline">
+    	<div class="form-group mb-2">
+    		<input type="text" class="form-control" name="name" placeholder="Search" />
+    		<input type="submit" value="Search" class="btn btn-primary" />
+    		<a class="btn btn-primary" href="/new" role="button">Add</a>
+    	</div>
+    </form>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Deprecation Date</th>
+                <th>HypeLevel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="framework : ${listFrameworks}">
+            	<td th:text="${framework.id}">ID</td>
+                <td th:text="${framework.name}">Name</td>
+                <td th:text="${framework.version}">Version</td>
+                <td th:text="${framework.deprecationDate}">Deprecation Date</td>
+                <td th:text="${framework.hypeLevel}">HypeLevel</td>
+                <td>
+                	<a th:href="@{'/edit/' + ${framework.id}}">Edit</a>
+                	&nbsp;&nbsp;&nbsp;
+                	<a th:href="@{'/delete/' + ${framework.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>    
+</body>
+</html>
